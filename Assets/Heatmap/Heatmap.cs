@@ -108,6 +108,7 @@ public class Heatmap : MonoBehaviour
     }
 
     // turns x (0 to 1) to to color (red to green)
+    // magic number nonsense I don't feel like expanding and making readable
     Color32 LerpNumberToColor(float x)
     {
         x = Mathf.Clamp01(x) * 765;

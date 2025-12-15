@@ -13,6 +13,8 @@ public class Test : MonoBehaviour
     bool debug = true;
     bool shouldReset = false;
 
+    // resets the grid every time a value is changed in the inspector
+    // uses a bool and then preforms the reset in Update() because unity complains if we do things in OnValidate()
     void OnValidate()
     {
         if (Application.isPlaying)
@@ -29,15 +31,15 @@ public class Test : MonoBehaviour
             shouldReset = false;
         }
 
+        // toggle debug text
         if (Input.GetKeyDown(KeyCode.Space))
         {
             debug = !debug;
             grid.SetDebug(debug);
         }
 
-        // if (Input.GetMouseButtonDown(0))
-            if (grid.GetCoordinatesFromPosition(Utils.GetMouseWorldPosition(), out int cursorX, out int cursorY))
-                grid.AddValue(cursorX, cursorY, 1);
+        if (grid.GetCoordinatesFromPosition(Utils.GetMouseWorldPosition(), out int cursorX, out int cursorY))
+            grid.AddValue(cursorX, cursorY, 1);
     }
 
     void ResetGrid()
